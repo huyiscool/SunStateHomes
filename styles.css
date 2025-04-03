@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background: #144170;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+}
+
+.listings {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.property {
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 300px;
+}
+
+.property img {
+    width: 100%;
+}
+
+.contact {
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+}
+
+.contact input, .contact textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.contact button {
+    background: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+}
