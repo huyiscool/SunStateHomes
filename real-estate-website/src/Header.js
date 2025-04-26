@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <header style={styles.header}>
-      <h1>Welcome to Luxury Realty</h1>
+      <h1>Welcome to Sun State Homes</h1>
       <p>Find Your Dream Home Today</p>
     </header>
   );

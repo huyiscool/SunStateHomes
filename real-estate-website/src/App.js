@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./components/Header";
-import PropertyList from "./components/PropertyList";
-import ContactForm from "./components/ContactForm";
+import Header from "./Header";
+import PropertyList from "./PropertyList";
+import ContactForm from "./ContactForm";
 
 const App = () => {
   return (
