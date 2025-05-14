@@ -1,0 +1,195 @@
+/* src/components/HeroSectionTwoSided.css */
+.hero-section-two-sided {
+  position: relative;
+  min-height: 70vh; /* Adjust as needed */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px; /* Add some padding */
+  color: #fff; /* Default assuming dark overlay or background */
+}
+
+.hero-overlay-two-sided {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Adjust overlay darkness */
+  z-index: 1;
+}
+
+.hero-container-two-sided {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 30px; /* Space between the two panels */
+  width: 100%;
+  max-width: 1200px; /* Max width for the content area */
+  margin: 0 auto;
+}
+
+.hero-panel {
+  flex: 1; /* Each panel takes up equal space */
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for panels */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2); /* Subtle shadow */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content within panel */
+  text-align: center;
+}
+
+/* Specific panel styling if needed, e.g., different accent colors */
+.hero-panel-buy {
+  /* Example: border-top: 5px solid var(--buy-accent-color, #007bff); */
+}
+
+.hero-panel-sell {
+  /* Example: border-top: 5px solid var(--sell-accent-color, #28a745); */
+}
+
+.panel-content {
+  width: 100%;
+}
+
+.panel-icon { /* If you add icons */
+  margin-bottom: 15px;
+  color: var(--primary-color, #007bff); /* Or a specific color for icons */
+}
+
+.panel-headline {
+  font-size: 1.8rem; /* Adjust */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.panel-subheadline {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #e0e0e0; /* Lighter text for subheadline */
+  line-height: 1.5;
+}
+
+.panel-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form groups */
+}
+
+.form-group {
+  text-align: left; /* Align labels to the left */
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: #f0f0f0;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box; /* Important for width 100% */
+}
+
+.form-group input[type="text"]::placeholder {
+  color: #999;
+}
+
+.panel-cta-button {
+  background-color: var(--primary-color, #007bff); /* Or a specific button color */
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Make button full width within its form */
+  margin-top: 10px; /* Space above button */
+}
+
+.hero-panel-buy .panel-cta-button {
+  background-color: var(--buy-accent-color, #007bff);
+}
+.hero-panel-buy .panel-cta-button:hover {
+  background-color: var(--buy-accent-color-dark, #0056b3);
+}
+
+.hero-panel-sell .panel-cta-button {
+  background-color: var(--sell-accent-color, #28a745);
+}
+.hero-panel-sell .panel-cta-button:hover {
+  background-color: var(--sell-accent-color-dark, #1e7e34);
+}
+
+
+.panel-alternative-cta {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.panel-alternative-cta a {
+  color: var(--accent-color, #ffc107); /* Link color */
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.panel-alternative-cta a:hover {
+  color: var(--accent-color-dark, #e0a800);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) { /* Tablet and below */
+  .hero-container-two-sided {
+    flex-direction: column; /* Stack panels */
+    gap: 20px;
+  }
+  .hero-panel {
+    max-width: 600px; /* Limit width when stacked */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .panel-headline {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 576px) { /* Mobile */
+  .hero-section-two-sided {
+    padding: 30px 15px;
+    min-height: auto; /* Let content define height more */
+  }
+  .panel-headline {
+    font-size: 1.4rem;
+  }
+  .panel-subheadline {
+    font-size: 0.9rem;
+  }
+  .hero-panel {
+    padding: 20px;
+  }
+  .form-group input[type="text"],
+  .form-group select,
+  .panel-cta-button {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,64 @@
+/* src/pages/AboutUsPage.css */
+/* ... (previous styles for .about-us-page, .about-header, .header-overlay, .about-section, .about-section h2, .about-section p, ul, li remain largely the same) ... */
+
+
+
+.about-us-page.about-solo-agent .my-story .content-flex {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start; /* Align items to the top */
+  }
+  
+  .about-us-page.about-solo-agent .agent-photo-container {
+    flex: 0 0 250px; /* Don't grow, don't shrink, base width 250px */
+    margin-right: 30px; /* Or use gap from flexbox */
+  }
+  
+  .agent-photo, .agent-photo-placeholder { /* Style for actual photo and placeholder */
+    width: 100%;
+    max-width: 250px; /* Control max size */
+    height: auto; /* Maintain aspect ratio for actual image */
+    border-radius: 8px; /* Softer edges */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    border: 3px solid #fff; /* Optional white border */
+  } 
+  
+  .about-us-page.about-solo-agent .my-story .content-text {
+    flex: 1; /* Take remaining space */
+  }
+  
+  /* Call to Action section remains the same */
+  .call-to-action-about {
+    text-align: center;
+    background-color: hsl(200, 36%, 95%);
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin-top: 20px; /* Ensure it's not directly touching the border-bottom of the previous section */
+  }
+  
+  .call-to-action-about p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .about-header h1 {
+      font-size: 2.2rem;
+    }
+    .about-header p {
+      font-size: 1.1rem;
+    }
+    .about-section h2 {
+      font-size: 1.8rem;
+    }
+    .about-us-page.about-solo-agent .my-story .content-flex {
+      flex-direction: column; /* Stack image and text on mobile */
+      align-items: center; /* Center items when stacked */
+    }
+    .about-us-page.about-solo-agent .agent-photo-container {
+      margin-right: 0;
+      margin-bottom: 20px; /* Space below photo when stacked */
+      width: 80%; /* Allow it to be a bit wider on mobile */
+    }
+  }
