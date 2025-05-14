@@ -6,11 +6,11 @@ import Header from './components/Header';
 import HeroSectionTwoSided from './components/HeroSectionTwoSided'; // Or your preferred Hero
 // import RentPage from './pages/RentPage';
 // import NeighborhoodsPage from './pages/NeighborhoodsPage';
- import AboutUsPage from './pages/AboutUsPage';
+import AboutUsPage from './pages/AboutUsPage';
 import ContactPage from './pages/ContactPage';
 
 
-const headerBgImage = "/BusinessCard.jpg"; // Replace
+const headerBgImage = "/BusinessCard.jpg"; 
 
 // Example Page Components (replace with your actual page components)
 const HomePageContent = () => (
