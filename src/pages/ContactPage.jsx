@@ -26,8 +26,20 @@ const ContactPage = () => {
         <p><strong>Email:</strong> chaunguyenhomes@gmail.com</p>
         <p><strong>Office Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (Pacific Time)</p>
         <p><strong>Location:</strong> 123 Main Street, San Jose, CA, USA</p>
-        {/* You can add a Google Maps embed here too */}
+        <div style={{ width: "100%", height: "300px", marginTop: "1rem" }}>
+          <iframe
+            title="Office Location"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=123+Main+Street,+San+Jose,+CA,+USA&output=embed"
+          ></iframe>
+        </div>
       </section>
+
     </div>
   );
 };

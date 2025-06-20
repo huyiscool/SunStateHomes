@@ -8,7 +8,7 @@ import HeroSectionTwoSided from './components/HeroSectionTwoSided'; // Or your p
 // import NeighborhoodsPage from './pages/NeighborhoodsPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ContactPage from './pages/ContactPage';
-
+import RentalPage from './pages/RentalPage';
 
 const headerBgImage = "/BusinessCard.jpg"; 
 
@@ -19,13 +19,12 @@ const HomePageContent = () => (
     onGetValuation={(data) => console.log("Valuation Sell:", data)}
   />
 );
-const RentPage = () => <div style={{ padding: '20px' }}><h1>Rent a Property</h1><p>Content for renting properties...</p></div>;
+//const RentPage = () => <div style={{ padding: '20px' }}><h1>Rent a Property</h1><p>Content for renting properties...</p></div>;
 const NeighborhoodsPage = () => <div style={{ padding: '20px' }}><h1>Explore Neighborhoods</h1><p>Details about various neighborhoods...</p></div>;
 //const AboutPage = () => <div style={{ padding: '20px' }}><h1>About Us</h1><p>Information about our company...</p></div>;
 
 
-
-// Optional: Layout Component
+// MainLayout component to wrap the Header and main content
 const MainLayout = () => {
   // Define custom links if needed, otherwise Header uses its defaults
   // const customNavLinks = [
@@ -55,7 +54,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}> {/* All routes under MainLayout will have Header */}
           <Route path="/" element={<HomePageContent />} />
-          <Route path="/rent" element={<RentPage />} />
+          <Route path="/rent" element={<RentalPage />} />
           <Route path="/neighborhoods" element={<NeighborhoodsPage />} />
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
