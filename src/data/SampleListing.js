@@ -1,6 +1,6 @@
 const SampleListing = [
   {
-    title: "Cozy Studio in SF",
+    title: "Cozy Cabin in SF",
     image: "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg",
     rent: 2400,
     address: "123 Main Street",
