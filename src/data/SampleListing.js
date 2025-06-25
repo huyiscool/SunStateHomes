@@ -1,6 +1,6 @@
 const SampleListing = [
   {
-    title: "Cozy Studio in SF",
+    title: "Cozy Cabin in SF",
     image: "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg",
     rent: 2400,
     address: "123 Main Street",
@@ -25,7 +25,32 @@ const SampleListing = [
     square_feet: 1600,
     description: "Perfect for families, this home offers a big backyard and open kitchen.",
   },
-  // ...more listings
+   {
+    title: "Sunny 3BR Townhome",
+    address: "456 Maple Ave",
+    city: "Sunnyvale",
+    state: "CA",
+    zipcode: "94086",
+    bedrooms: 3,
+    bathrooms: 2,
+    square_feet: 1200,
+    rent: 3500,
+    image: "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
+    description: "Bright townhome with patio and garage."
+  },
+  {
+    title: "1BR Loft Downtown",
+    address: "789 Mission St",
+    city: "San Francisco",
+    state: "CA",
+    zipcode: "94103",
+    bedrooms: 1,
+    bathrooms: 1,
+    square_feet: 700,
+    rent: 3200,
+    image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
+    description: "Modern loft steps from nightlife and transit."
+  }
 ];
 
 export default SampleListing;
