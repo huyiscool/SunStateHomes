@@ -14,6 +14,7 @@ export default function ListingCard({ listing }) {
     bathrooms,
     square_feet,
     description,
+    contact_url,
   } = listing;
 
 return (
@@ -49,9 +50,14 @@ return (
           </div>
         </div>
 
-        <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700 transition">
-          Contact
-        </button>
+        <a
+            href={contact_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 block text-center bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+          >
+        Contact
+      </a>
       </div>
     </div>
   );

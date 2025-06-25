@@ -11,6 +11,7 @@ const SampleListing = [
     bathrooms: 1,
     square_feet: 500,
     description: "A cozy, modern studio located in the heart of downtown.",
+    contact_url: "https://zillow.com",
   },
   {
     title: "Spacious Family Home",
@@ -24,6 +25,7 @@ const SampleListing = [
     bathrooms: 2,
     square_feet: 1600,
     description: "Perfect for families, this home offers a big backyard and open kitchen.",
+    contact_url: "https://zillow.com",
   },
    {
     title: "Sunny 3BR Townhome",
@@ -36,7 +38,8 @@ const SampleListing = [
     square_feet: 1200,
     rent: 3500,
     image: "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
-    description: "Bright townhome with patio and garage."
+    description: "Bright townhome with patio and garage.",
+    contact_url: "https://zillow.com",
   },
   {
     title: "1BR Loft Downtown",
@@ -49,8 +52,10 @@ const SampleListing = [
     square_feet: 700,
     rent: 3200,
     image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
-    description: "Modern loft steps from nightlife and transit."
+    description: "Modern loft steps from nightlife and transit.",
+    contact_url: "https://zillow.com",
   }
 ];
+
 
 export default SampleListing;
