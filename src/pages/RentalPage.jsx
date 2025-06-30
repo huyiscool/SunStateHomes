@@ -12,7 +12,7 @@ export default function RentalPage() {
       <h1 className="text-3xl font-bold mb-6">Rental Listings</h1>
 
       {/* 💡 This is the responsive grid layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
         {listings.map((listing, index) => (
           <ListingCard key={index} listing={listing} />
         ))}

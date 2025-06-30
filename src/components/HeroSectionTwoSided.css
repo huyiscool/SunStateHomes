@@ -1,7 +1,7 @@
 /* src/components/HeroSectionTwoSided.css */
 .hero-section-two-sided {
   position: relative;
-  min-height: 70vh; /* Adjust as needed */
+  height: 100vh; /* Take full viewport height */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -43,15 +43,6 @@
   flex-direction: column;
   align-items: center; /* Center content within panel */
   text-align: center;
-}
-
-/* Specific panel styling if needed, e.g., different accent colors */
-.hero-panel-buy {
-  /* Example: border-top: 5px solid var(--buy-accent-color, #007bff); */
-}
-
-.hero-panel-sell {
-  /* Example: border-top: 5px solid var(--sell-accent-color, #28a745); */
 }
 
 .panel-content {

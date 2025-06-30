@@ -23,21 +23,24 @@ const NeighborhoodsPage = () => <div style={{ padding: '20px' }}><h1>Explore Nei
 //const AboutPage = () => <div style={{ padding: '20px' }}><h1>About Us</h1><p>Information about our company...</p></div>;
 
 
+import Footer from './components/Footer';
+import './App.css';
+
 // MainLayout component to wrap the Header and main content
 const MainLayout = () => {
   return (
-    <>
+    <div className="app-container">
       <Header
         logoSrc="./Logo.png"
         siteTitle="Bay Area Realty"
         backgroundImage={headerBgImage}
         // navLinks={customNavLinks} // Uncomment to use custom links
       />
-      <main>
+      <main className="main-content">
         <Outlet /> {/* Child routes will render here */}
       </main>
-      {/* <Footer /> */}
-    </>
+      <Footer />
+    </div>
   );
 };
 
