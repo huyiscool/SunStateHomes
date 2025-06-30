@@ -1,7 +1,6 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; // Ensure Outlet is imported if using layout routes
-
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; 
 import Header from './components/Header';
 import HeroSectionTwoSided from './components/HeroSectionTwoSided'; // Or your preferred Hero
 // import RentPage from './pages/RentPage';
@@ -26,12 +25,6 @@ const NeighborhoodsPage = () => <div style={{ padding: '20px' }}><h1>Explore Nei
 
 // MainLayout component to wrap the Header and main content
 const MainLayout = () => {
-  // Define custom links if needed, otherwise Header uses its defaults
-  // const customNavLinks = [
-  //   { to: "/", label: "Home", end: true },
-  //   { to: "/all-rentals", label: "All Rentals" },
-  // ];
-
   return (
     <>
       <Header
@@ -58,7 +51,7 @@ function App() {
           <Route path="/neighborhoods" element={<NeighborhoodsPage />} />
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          {/* Add other routes here */}
+          
         </Route>
       </Routes>
     </Router>
