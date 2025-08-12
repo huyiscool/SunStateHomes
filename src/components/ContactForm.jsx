@@ -30,8 +30,7 @@ const ContactForm = () => {
       return;
     }
 
-    // Here you would typically send the formData to a backend API
-    // For this example, we'll just simulate a successful submission
+    //TODO : Implement actual form submission logic here
     console.log('Form Data Submitted:', formData);
 
     // Simulate API call
