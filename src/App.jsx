@@ -1,14 +1,15 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; // Ensure Outlet is imported if using layout routes
-
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; 
 import Header from './components/Header';
 import HeroSectionTwoSided from './components/HeroSectionTwoSided'; // Or your preferred Hero
 // import RentPage from './pages/RentPage';
-// import NeighborhoodsPage from './pages/NeighborhoodsPage';
+ import NeighborhoodsPage from './pages/NeighborhoodsPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ContactPage from './pages/ContactPage';
 import RentalPage from './pages/RentalPage';
+import Footer from './components/Footer';
+import './App.css';
 
 const headerBgImage = "/BusinessCard.jpg"; 
 
@@ -20,31 +21,28 @@ const HomePageContent = () => (
   />
 );
 //const RentPage = () => <div style={{ padding: '20px' }}><h1>Rent a Property</h1><p>Content for renting properties...</p></div>;
-const NeighborhoodsPage = () => <div style={{ padding: '20px' }}><h1>Explore Neighborhoods</h1><p>Details about various neighborhoods...</p></div>;
+//const NeighborhoodsPage = () => <div style={{ padding: '20px' }}><h1>Explore Neighborhoods</h1><p>Details about various neighborhoods...</p></div>;
 //const AboutPage = () => <div style={{ padding: '20px' }}><h1>About Us</h1><p>Information about our company...</p></div>;
+
+
+
 
 
 // MainLayout component to wrap the Header and main content
 const MainLayout = () => {
-  // Define custom links if needed, otherwise Header uses its defaults
-  // const customNavLinks = [
-  //   { to: "/", label: "Home", end: true },
-  //   { to: "/all-rentals", label: "All Rentals" },
-  // ];
-
   return (
-    <>
+    <div className="app-container">
       <Header
         logoSrc="./Logo.png"
         siteTitle="Bay Area Realty"
         backgroundImage={headerBgImage}
         // navLinks={customNavLinks} // Uncomment to use custom links
       />
-      <main>
+      <main className="main-content">
         <Outlet /> {/* Child routes will render here */}
       </main>
-      {/* <Footer /> */}
-    </>
+      <Footer />
+    </div>
   );
 };
 
@@ -58,7 +56,7 @@ function App() {
           <Route path="/neighborhoods" element={<NeighborhoodsPage />} />
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          {/* Add other routes here */}
+          
         </Route>
       </Routes>
     </Router>

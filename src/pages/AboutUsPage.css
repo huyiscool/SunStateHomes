@@ -24,7 +24,7 @@
   } 
   
   .about-us-page.about-solo-agent .my-story .content-text {
-    flex: 1; /* Take remaining space */
+    flex: 1; 
   }
   
   /* Call to Action section remains the same */

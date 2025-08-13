@@ -1,5 +1,6 @@
 // components/ListingCard.jsx
 import { MapPin, BedDouble, Bath, Ruler } from "lucide-react";
+import './ListingCard.css'; // Import the CSS file
 
 export default function ListingCard({ listing }) {
   const {
@@ -17,47 +18,49 @@ export default function ListingCard({ listing }) {
     contact_url,
   } = listing;
 
-return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-48 object-cover"
-      />
+  return (
+    <div className="listing-card">
+      <div className="listing-card-image-container">
+        <img
+          src={image}
+          alt={title}
+          className="listing-card-image"
+        />
+      </div>
 
-      <div className="p-4">
-        <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
-        <p className="text-blue-600 font-bold text-md mt-1">
+      <div className="listing-card-content">
+        <h2 className="listing-card-title">{title}</h2>
+        <p className="listing-card-rent">
           ${rent.toLocaleString()} / mo
         </p>
-        <div className="text-sm text-gray-500 mt-1 flex items-center">
-          <MapPin className="w-4 h-4 mr-1" />
+        <div className="listing-card-location">
+          <MapPin />
           {city}, {state}
         </div>
 
-        <div className="flex justify-between text-sm text-gray-600 mt-4">
-          <div className="flex items-center gap-1">
-            <BedDouble className="w-4 h-4" />
+        <div className="listing-card-details">
+          <div className="listing-card-detail-item">
+            <BedDouble />
             {bedrooms}
           </div>
-          <div className="flex items-center gap-1">
-            <Bath className="w-4 h-4" />
+          <div className="listing-card-detail-item">
+            <Bath />
             {bathrooms}
           </div>
-          <div className="flex items-center gap-1">
-            <Ruler className="w-4 h-4" />
+          <div className="listing-card-detail-item">
+            <Ruler />
             {square_feet} ft²
           </div>
         </div>
 
         <a
-            href={contact_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 block text-center bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700 transition"
-          >
-        Contact
-      </a>
+          href={contact_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="listing-card-contact-button"
+        >
+          Contact
+        </a>
       </div>
     </div>
   );
