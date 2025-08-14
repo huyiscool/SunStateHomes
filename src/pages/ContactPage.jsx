@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ContactForm.css';
+import './ContactPage.css';
 
 const EMAIL_RE = /[^@\s]+@[^@\s]+\.[^@\s]+/;
 
