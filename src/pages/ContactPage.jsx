@@ -1,47 +1,99 @@
-// src/pages/ContactPage.jsx
-import React from 'react';
-import ContactForm from '../components/ContactForm'; // Adjust path if needed
-import './ContactPage.css'; // Optional: for page-specific layout
+import React, { useState } from 'react';
+import './ContactForm.css';
 
-const ContactPage = () => {
-  const currentTimeInSanJose = new Date().toLocaleTimeString('en-US', {
-    timeZone: 'America/Los_Angeles', // Correct IANA time zone for San Jose, CA (PDT/PST)
-    hour: '2-digit',
-    minute: '2-digit',
-    // timeZoneName: 'short' // Optionally display PST/PDT
+const EMAIL_RE = /[^@\s]+@[^@\s]+\.[^@\s]+/;
+
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    hp: '' // honeypot field for bots
   });
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('Sending...');
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus('Please fill in all required fields (Name, Email, Message).');
+      return;
+    }
+    if (!EMAIL_RE.test(formData.email)) {
+      setStatus('Please enter a valid email address.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Failed to send');
+
+      setStatus('Message sent successfully! We will get back to you soon.');
+      setFormData({ name: '', email: '', subject: '', message: '', hp: '' });
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setStatus('Failed to send message. Please try again later.');
+    }
+  };
 
   return (
-    <div className="contact-page-layout">
-      <header className="page-header">
-        <h1>Contact Our Team</h1>
-        <p>We're here to help with all your real estate needs.</p>
-      </header>
-
-      <ContactForm />
-
-      <section className="additional-contact-info">
-        <h2>Other Ways to Reach Us</h2>
-        <p><strong>Phone:</strong> (408) 507-3929 (Current time in San Jose, CA: {currentTimeInSanJose})</p>
-        <p><strong>Email:</strong> chaunguyenhomes@gmail.com</p>
-        <p><strong>Office Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (Pacific Time)</p>
-        <p><strong>Location:</strong> 123 Main Street, San Jose, CA, USA</p>
-        <div style={{ width: "100%", height: "300px", marginTop: "1rem" }}>
-          <iframe
-            title="Office Location"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=123+Main+Street,+San+Jose,+CA,+USA&output=embed"
-          ></iframe>
+    <div className="contact-form-container">
+      <h2>Get In Touch</h2>
+      <p>Have a question or want to discuss a property? Fill out the form below.</p>
+      <form onSubmit={handleSubmit} className="contact-form" noValidate>
+        {/* Honeypot field (hidden from users) */}
+        <div className="hp-wrap" aria-hidden="true">
+          <label htmlFor="company">Company</label>
+          <input id="company" name="hp" value={formData.hp} onChange={handleChange} tabIndex="-1" autoComplete="off" />
         </div>
-      </section>
 
+        <div className="form-group">
+          <label htmlFor="name">Full Name <span className="required-asterisk">*</span></label>
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="e.g., Jane Doe" />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="email">Email Address <span className="required-asterisk">*</span></label>
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="e.g., you@example.com" />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="subject">Subject</label>
+          <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} placeholder="e.g., Property Inquiry" />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="message">Message <span className="required-asterisk">*</span></label>
+          <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows="6" required placeholder="Your message here..."></textarea>
+        </div>
+
+        <button type="submit" className="submit-button" disabled={status === 'Sending...'}>
+          {status === 'Sending...' ? 'Sending...' : 'Send Message'}
+        </button>
+
+        {status && (
+          <p className={`form-status ${
+            status.includes('successfully') ? 'success' :
+            (status.includes('Failed') || status.includes('Please')) ? 'error' : ''
+          }`}>{status}</p>
+        )}
+      </form>
     </div>
   );
 };
 
-export default ContactPage;
+export default ContactForm;
