@@ -10,7 +10,7 @@ const SAMPLE_DATA = [
     name: "Willow Glen",
     city: "San Jose",
     image:
-      "https://images.unsplash.com/photo-1565182999561-18d7fce6f47b?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
       "Tree-lined streets, charming downtown on Lincoln Ave, and classic craftsman homes. Popular with families seeking a neighborhood feel close to tech hubs.",
     highlights: ["Family-friendly", "Walkable", "Dining"],
