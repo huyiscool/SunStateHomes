@@ -1,20 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./NeighborhoodsPage.css";
 
-/**
- * NeighborhoodsPage – drop-in page for your /neighborhoods route
- *
- * ✅ No extra libraries required
- * ✅ Works with your existing Router / Header / Footer
- * ✅ Replace the SAMPLE_DATA with your real neighborhoods (or pass in via props later)
- *
- * How to use:
- * 1) Save this file as src/pages/NeighborhoodsPage.jsx
- * 2) In src/App.js, import it: `import NeighborhoodsPage from './pages/NeighborhoodsPage';`
- * 3) Remove the temporary inline NeighborhoodsPage and keep your <Route path="/neighborhoods" element={<NeighborhoodsPage />} />
- */
 
-// ---------- SAMPLE DATA (Replace with your own) ----------
+// ---------- SAMPLE DATA ----------
 const SAMPLE_DATA = [
   {
     id: "willow-glen",
@@ -151,40 +140,34 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
   }, [neighborhoods, city, q, mode, minPrice, maxPrice, minSchool, sort]);
 
   return (
-    <div style={styles.page}>
+    <div className="nb-page">
       {/* Hero */}
-      <section style={styles.hero}>
-        <div style={styles.heroInner}>
-          <h1 style={styles.title}>Explore Bay Area Neighborhoods</h1>
-          <p style={styles.subtitle}>
+      <section className="nb-hero">
+        <div className="nb-hero__inner">
+          <h1 className="nb-hero__title">Explore Bay Area Neighborhoods</h1>
+          <p className="nb-hero__subtitle">
             Compare schools, walkability, and pricing. Find the pocket that fits your lifestyle.
           </p>
-          <div style={styles.searchRow}>
+          <div className="nb-hero__search">
             <input
               type="text"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search by name, city, or vibe (e.g., 'walkable', 'nightlife')"
-              style={styles.searchInput}
+              className="nb-search__input"
             />
-            <div style={styles.modeToggle}>
+            <div className="nb-toggle">
               <button
                 aria-pressed={mode === "buy"}
                 onClick={() => setMode("buy")}
-                style={{
-                  ...styles.toggleBtn,
-                  ...(mode === "buy" ? styles.toggleBtnActive : {}),
-                }}
+                className={`nb-toggle__btn ${mode === "buy" ? "nb-toggle__btn--active" : ""}`}
               >
                 Buy
               </button>
               <button
                 aria-pressed={mode === "rent"}
                 onClick={() => setMode("rent")}
-                style={{
-                  ...styles.toggleBtn,
-                  ...(mode === "rent" ? styles.toggleBtnActive : {}),
-                }}
+                className={`nb-toggle__btn ${mode === "rent" ? "nb-toggle__btn--active" : ""}`}
               >
                 Rent
               </button>
@@ -194,11 +177,11 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
       </section>
 
       {/* Filters */}
-      <section style={styles.filtersWrap}>
-        <div style={styles.filters}>
-          <label style={styles.filterItem}>
-            <span style={styles.label}>City</span>
-            <select value={city} onChange={(e) => setCity(e.target.value)} style={styles.select}>
+      <section className="nb-filters-wrap">
+        <div className="nb-filters">
+          <label className="nb-filter">
+            <span className="nb-label">City</span>
+            <select value={city} onChange={(e) => setCity(e.target.value)} className="nb-select">
               {cities.map((c) => (
                 <option key={c} value={c}>
                   {c}
@@ -207,9 +190,9 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
             </select>
           </label>
 
-          <div style={styles.priceGroup}>
-            <span style={styles.label}>{mode === "buy" ? "Home Price ($)" : "Monthly Rent ($)"}</span>
-            <div style={{ display: "flex", gap: 8 }}>
+          <div className="nb-price">
+            <span className="nb-label">{mode === "buy" ? "Home Price ($)" : "Monthly Rent ($)"}</span>
+            <div className="nb-price__inputs">
               <input
                 type="number"
                 min={0}
@@ -217,9 +200,9 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
                 value={minPrice}
                 onChange={(e) => setMinPrice(Number(e.target.value || 0))}
                 placeholder="Min"
-                style={styles.number}
+                className="nb-number"
               />
-              <span style={{ alignSelf: "center", color: "#64748b" }}>—</span>
+              <span className="nb-price__dash">—</span>
               <input
                 type="number"
                 min={0}
@@ -227,14 +210,14 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value || 0))}
                 placeholder="Max"
-                style={styles.number}
+                className="nb-number"
               />
             </div>
           </div>
 
-          <label style={styles.filterItem}>
-            <span style={styles.label}>Min School Rating</span>
-            <select value={minSchool} onChange={(e) => setMinSchool(Number(e.target.value))} style={styles.select}>
+          <label className="nb-filter">
+            <span className="nb-label">Min School Rating</span>
+            <select value={minSchool} onChange={(e) => setMinSchool(Number(e.target.value))} className="nb-select">
               {[0, 6, 7, 8, 9].map((n) => (
                 <option key={n} value={n}>
                   {n === 0 ? "Any" : `${n}+`}
@@ -243,9 +226,9 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
             </select>
           </label>
 
-          <label style={styles.filterItem}>
-            <span style={styles.label}>Sort</span>
-            <select value={sort} onChange={(e) => setSort(e.target.value)} style={styles.select}>
+          <label className="nb-filter">
+            <span className="nb-label">Sort</span>
+            <select value={sort} onChange={(e) => setSort(e.target.value)} className="nb-select">
               <option value="relevance">Relevance</option>
               <option value="price-asc">Price: Low → High</option>
               <option value="price-desc">Price: High → Low</option>
@@ -256,9 +239,9 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
       </section>
 
       {/* Results */}
-      <section style={styles.resultsWrap}>
-        <div style={styles.resultsHeader}>
-          <h2 style={styles.resultsTitle}>{filtered.length} Neighborhood{filtered.length !== 1 ? "s" : ""}</h2>
+      <section className="nb-results-wrap">
+        <div className="nb-results__header">
+          <h2 className="nb-results__title">{filtered.length} Neighborhood{filtered.length !== 1 ? "s" : ""}</h2>
           <button
             onClick={() => {
               setQ("");
@@ -268,30 +251,30 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
               setMinSchool(0);
               setSort("relevance");
             }}
-            style={styles.clearBtn}
+            className="nb-btn nb-btn--clear"
           >
             Clear filters
           </button>
         </div>
 
-        <div style={styles.grid}>
+        <div className="nb-grid">
           {filtered.map((n) => (
-            <article key={n.id} style={styles.card}>
-              <div style={styles.imageWrap}>
-                <img src={n.image} alt={`${n.name} in ${n.city}`} style={styles.image} />
+            <article key={n.id} className="nb-card">
+              <div className="nb-card__image-wrap">
+                <img src={n.image} alt={`${n.name} in ${n.city}`} className="nb-card__image" />
               </div>
-              <div style={styles.cardBody}>
-                <header style={{ marginBottom: 8 }}>
-                  <h3 style={styles.cardTitle}>{n.name}</h3>
-                  <div style={styles.cardSub}>{n.city}</div>
+              <div className="nb-card__body">
+                <header className="nb-card__header">
+                  <h3 className="nb-card__title">{n.name}</h3>
+                  <div className="nb-card__sub">{n.city}</div>
                 </header>
-                <p style={styles.desc}>{n.description}</p>
+                <p className="nb-card__desc">{n.description}</p>
 
                 {/* Chips */}
                 {n.highlights?.length ? (
-                  <div style={styles.chips}>
+                  <div className="nb-chips">
                     {n.highlights.map((h) => (
-                      <span key={h} style={styles.chip}>
+                      <span key={h} className="nb-chip">
                         {h}
                       </span>
                     ))}
@@ -299,34 +282,43 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
                 ) : null}
 
                 {/* Stats */}
-                <ul style={styles.stats}>
+                <ul className="nb-stats">
                   <li>
-                    <span style={styles.statLabel}>{mode === "buy" ? "Median Home" : "Median Rent"}</span>
-                    <span style={styles.statValue}>
+                    <span className="nb-stat__label">{mode === "buy" ? "Median Home" : "Median Rent"}</span>
+                    <span className="nb-stat__value">
                       {mode === "buy" ? currency(n.medianHomePrice) : currency(n.medianRent)}
                     </span>
                   </li>
                   <li>
-                    <span style={styles.statLabel}>Schools</span>
-                    <span style={styles.statValue}>{n.schoolRating ?? "—"}</span>
+                    <span className="nb-stat__label">Schools</span>
+                    <span className="nb-stat__value">{n.schoolRating ?? "—"}</span>
                   </li>
                   <li>
-                    <span style={styles.statLabel}>Walk / Transit</span>
-                    <span style={styles.statValue}>
+                    <span className="nb-stat__label">Walk / Transit</span>
+                    <span className="nb-stat__value">
                       {n.walkScore ?? "—"} / {n.transitScore ?? "—"}
                     </span>
                   </li>
                 </ul>
 
                 {/* CTAs */}
-                <div style={styles.ctas}>
+                <div className="nb-ctas">
                   <button
-                    style={styles.primaryBtn}
-                    onClick={() => navigate(`/rent?city=${encodeURIComponent(n.city)}&neighborhood=${encodeURIComponent(n.name)}`)}
+                    className="nb-btn nb-btn--primary"
+                    onClick={() =>
+                      navigate(
+                        `/rent?city=${encodeURIComponent(n.city)}&neighborhood=${encodeURIComponent(n.name)}`
+                      )
+                    }
                   >
                     View Listings
                   </button>
-                  <a href={toMapsUrl(n.name, n.city)} target="_blank" rel="noreferrer" style={styles.ghostBtn}>
+                  <a
+                    href={toMapsUrl(n.name, n.city)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="nb-btn nb-btn--ghost"
+                  >
                     View on Map
                   </a>
                 </div>
@@ -337,176 +329,17 @@ export default function NeighborhoodsPage({ neighborhoods = SAMPLE_DATA }) {
       </section>
 
       {/* Lead-in */}
-      <section style={styles.banner}>
-        <div style={styles.bannerInner}>
-          <h3 style={{ margin: 0 }}>Not sure where to start?</h3>
-          <p style={{ margin: "8px 0 16px", color: "#0f172a" }}>
+      <section className="nb-banner">
+        <div className="nb-banner__inner">
+          <h3>Not sure where to start?</h3>
+          <p>
             Tell us your commute, budget, and must‑haves. We will recommend 3 neighborhoods tailored to you.
           </p>
-          <button style={styles.primaryBtn} onClick={() => navigate("/contact")}>Get a custom shortlist</button>
+          <button className="nb-btn nb-btn--primary" onClick={() => navigate("/contact")}>
+            Get a custom shortlist
+          </button>
         </div>
       </section>
     </div>
   );
 }
-
-// ---------- STYLES ----------
-const styles = {
-  page: { display: "grid", gap: 24 },
-  hero: {
-    background: "linear-gradient(135deg, #0ea5e9 0%, #22c55e 100%)",
-    color: "white",
-    borderRadius: 20,
-    margin: 16,
-    padding: "48px 24px",
-  },
-  heroInner: { maxWidth: 1100, margin: "0 auto" },
-  title: { fontSize: 36, fontWeight: 800, margin: 0 },
-  subtitle: { marginTop: 8, fontSize: 16, opacity: 0.95 },
-  searchRow: {
-    display: "grid",
-    gridTemplateColumns: "1fr auto",
-    gap: 12,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  searchInput: {
-    width: "100%",
-    borderRadius: 12,
-    border: "none",
-    padding: "14px 16px",
-    fontSize: 16,
-    outline: "none",
-  },
-  modeToggle: {
-    display: "inline-flex",
-    background: "rgba(255,255,255,0.2)",
-    borderRadius: 999,
-    padding: 4,
-    gap: 4,
-  },
-  toggleBtn: {
-    background: "transparent",
-    border: "none",
-    color: "white",
-    padding: "10px 14px",
-    borderRadius: 999,
-    cursor: "pointer",
-    fontWeight: 700,
-  },
-  toggleBtnActive: { background: "white", color: "#0f172a" },
-
-  filtersWrap: { background: "#f8fafc", padding: "8px 16px" },
-  filters: {
-    maxWidth: 1100,
-    margin: "0 auto",
-    display: "grid",
-    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-    gap: 12,
-    alignItems: "end",
-  },
-  filterItem: { display: "grid", gap: 6 },
-  label: { fontSize: 12, color: "#475569", fontWeight: 700, letterSpacing: 0.3 },
-  select: {
-    width: "100%",
-    borderRadius: 10,
-    border: "1px solid #e2e8f0",
-    padding: "10px 12px",
-    background: "white",
-  },
-  number: {
-    width: 140,
-    borderRadius: 10,
-    border: "1px solid #e2e8f0",
-    padding: "10px 12px",
-    background: "white",
-  },
-  priceGroup: { display: "grid", gap: 6 },
-
-  resultsWrap: { padding: 16 },
-  resultsHeader: {
-    maxWidth: 1100,
-    margin: "0 auto 12px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  resultsTitle: { margin: 0, fontSize: 20 },
-  clearBtn: {
-    background: "transparent",
-    border: "1px solid #cbd5e1",
-    borderRadius: 10,
-    padding: "8px 10px",
-    cursor: "pointer",
-    color: "#334155",
-  },
-
-  grid: {
-    maxWidth: 1100,
-    margin: "0 auto",
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-    gap: 16,
-  },
-  card: {
-    background: "white",
-    border: "1px solid #e2e8f0",
-    borderRadius: 16,
-    overflow: "hidden",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.04)",
-    display: "grid",
-  },
-  imageWrap: { position: "relative", aspectRatio: "16/9", overflow: "hidden" },
-  image: { width: "100%", height: "100%", objectFit: "cover" },
-  cardBody: { padding: 16, display: "grid", gap: 10 },
-  cardTitle: { margin: 0, fontSize: 18 },
-  cardSub: { color: "#64748b", fontSize: 13, marginTop: 2 },
-  desc: { color: "#334155", fontSize: 14, lineHeight: 1.5, margin: 0 },
-  chips: { display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 },
-  chip: {
-    fontSize: 12,
-    background: "#f1f5f9",
-    border: "1px solid #e2e8f0",
-    color: "#0f172a",
-    padding: "6px 10px",
-    borderRadius: 999,
-  },
-  stats: {
-    listStyle: "none",
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    padding: 0,
-    margin: 0,
-    gap: 8,
-  },
-  statLabel: { display: "block", fontSize: 11, color: "#64748b" },
-  statValue: { display: "block", fontWeight: 800, fontSize: 14, color: "#0f172a" },
-  ctas: { display: "flex", gap: 8, marginTop: 8 },
-  primaryBtn: {
-    background: "#0ea5e9",
-    color: "white",
-    border: "none",
-    borderRadius: 10,
-    padding: "10px 14px",
-    cursor: "pointer",
-    fontWeight: 700,
-  },
-  ghostBtn: {
-    display: "inline-block",
-    textDecoration: "none",
-    background: "white",
-    color: "#0f172a",
-    border: "1px solid #cbd5e1",
-    borderRadius: 10,
-    padding: "10px 14px",
-    fontWeight: 700,
-  },
-
-  banner: {
-    background: "#e2f2ff",
-    border: "1px solid #bfdbfe",
-    borderRadius: 16,
-    margin: 16,
-  },
-  bannerInner: { maxWidth: 1100, margin: "0 auto", padding: 16 },
-};
